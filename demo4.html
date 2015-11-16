@@ -18,7 +18,7 @@
         loadData: function() {
           var me = this;
             $.getJSON(this.props.url, function(data) {
-              me.state.data = data;
+              me.setState({"data": data});
             });
         },
         render: function() {
