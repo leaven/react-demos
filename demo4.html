@@ -16,9 +16,9 @@
           return {data: []};
         },
         loadData: function() {
+          var me = this;
             $.getJSON("./data/demo4.json", function(data) {
-              console.log(data);
-              this.state.data = data;
+              me.state.data = data;
             });
         },
         render: function() {
