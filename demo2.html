@@ -1,40 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-     <script src="./lib/react.js"></script>
-    <script src="./lib/browser.min.js"></script>
+     <script src="./react/react.js"></script>
+    <script src="./react/react-dom.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
   </head>
   <body>
     <div id="example"></div>
     <script type="text/babel">
-      var Hello = React.createClass({
-        render: function() {
-          return (
-              <div>
-                Hello
-              </div>
-          );
-        }
-      });
-      var World = React.createClass({
-        render: function() {
-          return (
-            <div>World</div>
-          )
-        }
-      });
       var HelloWolrd = React.createClass({
+        getInitialState: function() {
+            return {
+                isName: false
+            }
+        },
+        changeValue: function() {
+            this.setState({"isName": (this.state.isName?false: true)});
+        },
         render: function() {
               return (
                 <div>
-                  <h1>Hi</h1>
-                  <Hello /><World />
-                  
+                    Hello, {this.state.isName? 'leaven': 'world'}
+                    <button onClick={this.changeValue}>点击此处改变name</button>      
                 </div>
               );
         }
       });
-      React.render(
+      ReactDOM.render(
         <HelloWolrd />,
         document.getElementById('example')
       );
