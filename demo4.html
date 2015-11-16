@@ -18,14 +18,13 @@
         loadData: function() {
           var me = this;
             $.getJSON(this.props.url, function(data) {
-              me.setState({"data": data});
+              me.setState({data: data});
             });
         },
         render: function() {
-          var person = this.state.data.map(function(d) {
-            console.log(d);
+          var person = this.state.data.map(function(d, i) {
             return (
-              <div className="name">
+              <div className="name" key={i}>
                 name:{d.name}, age:{d.age}
               </div> 
             )
