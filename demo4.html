@@ -17,12 +17,13 @@
         },
         loadData: function() {
           var me = this;
-            $.getJSON("./data/demo4.json", function(data) {
+            $.getJSON(this.props.url, function(data) {
               me.state.data = data;
             });
         },
         render: function() {
           var person = this.state.data.map(function(d) {
+            console.log(d);
             return (
               <div className="name">
                 name:{d.name}, age:{d.age}
