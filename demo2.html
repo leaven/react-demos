@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <script src="./lib/react.js"></script>
+    <script src="./lib/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var Hello = React.createClass({
+        render: function() {
+          return (
+              <div>
+                Hello
+              </div>
+          );
+        }
+      });
+      var World = React.createClass({
+        render: function() {
+          return (
+            <div>World</div>
+          )
+        }
+      });
+      var HelloWolrd = React.createClass({
+        render: function() {
+              return (
+                <div>
+                  <h1>Hi</h1>
+                  <Hello /><World />
+                  
+                </div>
+              );
+        }
+      });
+      React.render(
+        <HelloWolrd />,
+        document.getElementById('example')
+      );
+    </script>
+
+</html>

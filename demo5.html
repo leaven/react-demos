@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./lib/react.js"></script>
+    <script src="./lib/browser.min.js"></script>
+    <script type="text/javascript" src="./lib/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var HelloWorld = React.createClass({
+        getInitialState: function() {
+          return {data: []};
+        },
+        componentDidMount: function() {
+            $.ajax({
+              url: this.props.url,
+              success: function(res) {
+                 this.setState({data: JSON.parse(res)});
+              }.bind(this)
+            });
+        },
+        render: function() {
+          var Img = this.state.data.map(function(d) {
+              return (
+                <a href={d.url}>
+                  <img src={d.img_url} alt={d.title} />
+                </a>
+              );
+          });
+          return (
+            <div>
+                {Img}
+            </div>
+          )
+        }
+      });
+      React.render(
+        <HelloWorld url="http://didi.kuaidadi.com/data/test.json" />,
+        document.getElementById('example')
+      );
+    </script>
+
+</html>

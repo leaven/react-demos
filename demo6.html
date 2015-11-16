@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./lib/react.js"></script>
+    <script src="./lib/browser.min.js"></script>
+    <script type="text/javascript" src="./lib/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      function getRandom(startNum, endNum) {
+        return Math.floor(Math.random() * (endNum - startNum + 1) + startNum);
+      }
+      var HelloWorld = React.createClass({
+        colorList: ["red","black","green"],
+        
+        getInitialState: function() {
+          this.divStyle = {
+            color: this.colorList[0]
+          };
+          return {
+            count: 1,
+            color: this.colorList[0]
+          };
+        },
+        componentDidMount: function() {
+            var me = this;
+            setInterval(function() {
+              var index = (me.state.count - 1) % 3;
+              me.divStyle.color = me.colorList[index];
+               me.setState({
+                  count: me.state.count+1
+               });
+            }, 1000)
+        },
+        render: function() {
+          
+          return (
+            <div>
+                count: {this.state.count}
+                <b style={this.divStyle}>color: {this.state.color}</b>
+            </div>
+          )
+        }
+      });
+      React.render(
+        <HelloWorld />,
+        document.getElementById('example')
+      );
+    </script>
+
+</html>
