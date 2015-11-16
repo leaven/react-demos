@@ -3,6 +3,7 @@
   <head>
     <script src="./react/react.js"></script>
     <script src="./react/react-dom.js"></script>
+    <script src="./react/jquery.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
   </head>
   <body>
@@ -15,16 +16,10 @@
           return {data: []};
         },
         loadData: function() {
-          fetch("./data/demo4.json").then(function(res) {
-            // res instanceof Response == true.
-            if (res.ok) {
-              res.json().then(function(data) {
-                console.log(data.entries);
-              });
-            } else {
-              console.log("Looks like the response wasn't perfect, got status", res.status);
-            }
-          });
+            $.getJSON("./data/demo4.json", function(data) {
+              console.log(data);
+              this.state.data = data;
+            });
         },
         render: function() {
           var person = this.state.data.map(function(d) {
