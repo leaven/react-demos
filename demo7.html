@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./react/react.js"></script>
+    <script src="./react/react-dom.js"></script>
+    <script src="./react/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+    	var InputChange = React.createClass({
+    		getInitialState: function() {
+    			return {
+    				inputValue: ''
+    			}
+    		},
+    		getValue: function() {
+    			var value = this.refs.nameInput.value;
+    			this.setState({"name": value});
+    		},
+    		render: function() {
+    			return (
+    				<div>
+    					<input type="text" ref="nameInput" onInput={this.getValue} />
+    					<span>您输入的名字是：{this.state.name}</span>
+    				</div>
+    			)
+    		}
+    	});
+    	ReactDOM.render(
+    		<InputChange />,
+    		document.getElementById("example")
+    	);
+    </script>
+
+</body>

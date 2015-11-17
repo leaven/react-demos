@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./react/react.js"></script>
+    <script src="./react/react-dom.js"></script>
+    <script src="./react/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var HelloWorld = React.createClass({
+        getInitialState: function() {
+
+          this.loadData();
+          return {data: []};
+        },
+        loadData: function() {
+          var me = this;
+            $.getJSON(this.props.url, function(data) {
+              me.setState({data: data});
+            });
+        },
+        componentWillMount: function() {
+          console.log("will mount");
+        },
+        componentDidMount: function() {
+          console.log("did mount");
+        },
+        componentWillReceiveProps: function() {
+          console.log("receive props");
+        },
+        shouldComponentUpdate: function() {
+          console.log("should update");
+        },
+        componentWillUpdate: function() {
+          console.log("will update");
+        },
+        componentDidUpdate: function() {
+          console.log("did update");
+        },
+        componentWillUnmount: function() {
+          console.log("will unmount");
+        },
+        render: function() {
+          var person = this.state.data.map(function(d, i) {
+            return (
+              <div className="name" key={i}>
+                name:{d.name}, age:{d.age}
+              </div> 
+            )
+          });
+          return (
+             <div>
+                {person}
+             </div>
+          );
+        }
+      });
+      ReactDOM.render(
+        <HelloWorld url="./data/demo4.json"/>,
+        document.getElementById('example')
+      );
+    </script>
+
+</html>
